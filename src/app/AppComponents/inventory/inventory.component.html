@@ -1,0 +1,60 @@
+<form class="row g-3 needs-validation m-2" novalidate>
+    <div class="col-md-2">
+      <label for="validationCustom01" class="form-label">Product ID</label>
+      <input type="text" class="form-control" id="validationCustom01" name="productID" [disabled]="disableProductIdInput"
+        [(ngModel)]="InventoryData.ProductId" required>
+    </div>
+    
+    <div class="col-md-2">
+      <label for="validationCustom04" class="form-label">Product Name</label>
+      <select class="form-select" id="validationCustom04" name="productName"
+        [(ngModel)]="InventoryData.ProductName" required>
+        <option selected disabled value="">Choose...</option>
+        <option>Earphone</option>
+        <option>Mobile Phone</option>
+        <option>Playstation</option>
+      </select>
+    </div>
+  
+    <div class="col-md-2">
+      <label for="validationCustom02" class="form-label">Quantity</label>
+      <input type="text" class="form-control" id="validationCustom02" name="availableQuantity"
+        [(ngModel)]="InventoryData.AvailableQty" required>
+    </div>
+  
+    <div class="col-md-2">
+      <label for="validationCustomUsername" class="form-label">Reorder Point</label>
+      <input type="text" class="form-control" id="validationCustomUsername" name="reorderpoint"
+        [(ngModel)]="InventoryData.ReOrderPoint" required>
+    </div>
+  
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit" (click)="onSubmit()">Submit</button>
+    </div>
+  </form>
+  
+  <h2 class="fs-4 m-2">Inventory Details</h2>
+  <table class="table table-striped m-2">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product ID</th>
+        <th scope="col">Stock Available</th>
+        <th scope="col">Reorder Point</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let inventory of InventoryDetails">
+        <th scope="row">{{inventory.productId}}</th>
+        <td>{{inventory.productName}}</td>
+        <td>{{inventory.availableQty}}</td>
+        <td>{{inventory.reOrderPoint}}</td>
+        <td>
+          <button type="button" class="btn btn-primary mx-1" (click) = "populateFormForEdit(inventory)">Edit</button>
+          <button type="button" class="btn btn-danger mx-1" (click) = "deleteInventory(inventory.productId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
