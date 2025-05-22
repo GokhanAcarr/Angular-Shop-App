@@ -1,5 +1,63 @@
 [
   {
+    "ContainingType": "ShopAppApi.Controllers.CustomerController",
+    "Method": "AddCustomer",
+    "RelativePath": "api/Customer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestDto",
+        "Type": "ShopAppApi.Models.CustomerRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopAppApi.Controllers.CustomerController",
+    "Method": "GetAllCustomers",
+    "RelativePath": "api/Customer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopAppApi.Controllers.CustomerController",
+    "Method": "UpdateCustomer",
+    "RelativePath": "api/Customer",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestDto",
+        "Type": "ShopAppApi.Models.CustomerRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopAppApi.Controllers.CustomerController",
+    "Method": "DeleteCustomer",
+    "RelativePath": "api/Customer/{customerId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ShopAppApi.Controllers.InventoryController",
     "Method": "SaveInventoryData",
     "RelativePath": "api/Inventory",

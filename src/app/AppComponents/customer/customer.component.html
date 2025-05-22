@@ -1,31 +1,64 @@
+<div class="col-12 mx-4 mb-4">
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customerModal">
+    Add a New Customer
+  </button>
+</div>
 
-   <div class="col-12 mx-4 mb-4">
-      <button class="btn btn-primary" type="submit">Add a New Customer</button>
-    </div>
-  <h2 class="fs-4 m-2">Customer Details</h2>
-  <table class="table table-striped m-2">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Customer ID</th>
-        <th scope="col">Customer Name</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Registration Date</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr >
-        <th scope="row"></th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-          <button type="button" class="btn btn-primary mx-1" >Edit</button>
-          <button type="button" class="btn btn-danger mx-1" >Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
+<app-customer-dialog-box (customerAdded)="loadCustomers()"></app-customer-dialog-box>
+
+<h2 class="fs-4 m-2">Customer Details</h2>
+<table class="table table-striped m-2">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Customer ID</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Registration Date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of CustomerList; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ customer.customerId }}</td>
+      <td>{{ customer.customerName }}</td>
+      <td>{{ customer.phone }}</td>
+      <td>{{ customer.registrationDate | date: 'yyyy-MM-dd' }}</td>
+      <td>
+        <button class="btn btn-primary mx-1" (click)="openEditModal(customer)">Edit</button>
+        <button class="btn btn-danger mx-1" (click)="deleteCustomer(customer.customerId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="modal fade" id="editCustomerModal" tabindex="-1" aria-labelledby="editCustomerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form class="modal-content" #editForm="ngForm" (ngSubmit)="updateCustomer()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editCustomerModalLabel">Edit Customer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="customerToEdit = null"></button>
+      </div>
+      <div class="modal-body" *ngIf="customerToEdit">
+        <div class="mb-3">
+          <label for="editCustomerName" class="form-label">Customer Name</label>
+          <input id="editCustomerName" type="text" class="form-control" [(ngModel)]="customerToEdit.customerName" name="customerName" required />
+        </div>
+        <div class="mb-3">
+          <label for="editPhone" class="form-label">Phone</label>
+          <input id="editPhone" type="text" class="form-control" [(ngModel)]="customerToEdit.phone" name="phone" required />
+        </div>
+        <div class="mb-3">
+          <label for="editRegistrationDate" class="form-label">Registration Date</label>
+          <input id="editRegistrationDate" type="date" class="form-control" [(ngModel)]="customerToEdit.registrationDate" name="registrationDate" required />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="customerToEdit = null">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+

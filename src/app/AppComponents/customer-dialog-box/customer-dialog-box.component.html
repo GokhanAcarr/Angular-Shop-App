@@ -1,1 +1,34 @@
-<p>customer-dialog-box works!</p>
+<div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form (ngSubmit)="submitCustomer()" #form="ngForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="customerModalLabel">Add New Customer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Customer Name</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="customer.customerName" name="customerName" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="text" class="form-control" id="phone" [(ngModel)]="customer.phone" name="phone" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="date" class="form-label">Registration Date</label>
+            <input type="date" class="form-control" id="date" [(ngModel)]="customer.registrationDate" name="registrationDate" required />
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
